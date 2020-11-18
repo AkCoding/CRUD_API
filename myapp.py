@@ -35,5 +35,16 @@ def post_data():
 
 
 
-# for update/patch
+# for update/put
+def update_data():
+    data = {
+        'id' : 1,
+        'name' : 'Rohit',
+        'city' : 'Ranchi'
+    }
+    json_data = json.dumps(data)
+    r = requests.put(url = URL, data=json_data)
+    data = r.json()
+    print(data)
 
+update_data()
