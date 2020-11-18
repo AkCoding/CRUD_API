@@ -8,8 +8,12 @@ class StudentSerializer(serializers.Serializer):
     city = serializers.CharField(max_length=100)
     roll = serializers.IntegerField()
 
-    def create(self, validated_data):
-        return Student.objects.create(**validated_data)
+
+#for create/post
+    # def create(self, validated_data):
+    #     return Student.objects.create(**validated_data)
+
+
 
 
 
