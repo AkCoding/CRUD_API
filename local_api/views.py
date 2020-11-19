@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from .models import Student
 from .serializers import StudentSerializer
@@ -10,10 +12,10 @@ from rest_framework.parsers import JSONParser
 
 # Create your views here.
 
-# Get Method View Function Here
-@csrf_exempt
-def student_api(request):
-    if request.method == 'GET':
+# Get Method using class
+@method_decorator(csrf_exempt, name='dispatch')
+class StudentAPI(View):
+    def get(self, request, *args, **kwargs):
         json_data = request.body
         stream = io.BytesIO(json_data)
         pythondata = JSONParser().parse(stream)
@@ -23,7 +25,6 @@ def student_api(request):
             serializer = StudentSerializer(stu)
             json_data = JSONRenderer().render(serializer.data)
             return HttpResponse(json_data, content_type='application/json')
-
         stu = Student.objects.all()
         serializer = StudentSerializer(stu, many=True)
         json_data = JSONRenderer().render(serializer.data)
@@ -31,7 +32,7 @@ def student_api(request):
 
 
 #POST Method View Function Here
-    if request.method == 'POST':
+    def post(self, request, *args, **kwargs):
         json_data = request.body
         stream = io.BytesIO(json_data)
         pythondata = JSONParser().parse(stream)
@@ -46,13 +47,16 @@ def student_api(request):
 
 
 
-# PUT/Update method
-    if request.method == 'PUT':
+    # PUT/Update method
+    def put(self, request, *args, **kwargs):
         json_data = request.body
         stream = io.BytesIO(json_data)
         pythondata = JSONParser().parse(stream)
         id = pythondata.get('id')
         stu = Student.objects.get(id=id)
+        # Complete update - required all data from front End/Client
+        # serializer = StudentSerializer(stu, data=pythondata)
+        # partial data update - All data not required
         serializer = StudentSerializer(stu, data=pythondata, partial=True)
         if serializer.is_valid():
             serializer.save()
@@ -65,9 +69,8 @@ def student_api(request):
 
 
 
-
-#Data Deleted
-    if request.method == 'DELETE':
+    # Deleted method
+    def delete(self, request, *args, **kwargs):
         json_data = request.body
         stream = io.BytesIO(json_data)
         pythondata = JSONParser().parse(stream)
@@ -75,5 +78,9 @@ def student_api(request):
         stu = Student.objects.get(id=id)
         stu.delete()
         res = {'msg': 'Data Deleted'}
-        json_data = JSONRenderer().render(res)
-        return HttpResponse(json_data, content_type='application/json')
+        # json_data = JSONRenderer().render(res)
+        # return HttpResponse(json_data, content_type='application/json')
+        # or
+        return JsonResponse(res, safe=False)
+
+
