@@ -13,16 +13,16 @@ def get_data(id = None):
     r = requests.get(url= URL, data = json_data)
     data = r.json()
     print(data)
-# get_data()
+get_data()
 
 
 
 #Post/create Method Function Here
 def post_data():
     data = {
-        'id' : 3,
-        'name' : 'mohit',
-        'roll' : 103,
+        'id' : 8,
+        'name' : 'karan',
+        'roll' : 108,
         'city' : 'indore'
     }
 
@@ -31,16 +31,16 @@ def post_data():
     data = r.json()
     print(data)
 
-post_data()
+# post_data()
 
 
 
 # for update/put
 def update_data():
     data = {
-        'id' : 2,
-        'name' : 'Rohit',
-        'city' : 'Ranchi'
+        'id' : 8,
+        'name' : 'sohit',
+        'city' : 'sanchi'
     }
     json_data = json.dumps(data)
     r = requests.put(url = URL, data=json_data)
