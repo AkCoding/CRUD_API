@@ -2,9 +2,15 @@ from rest_framework import serializers
 from .models import Student
 
 
+
+# Validators
+def start_with_r(value):
+    if value[0].lower() != 'r':
+        raise serializers.ValidationError('Name should be start with R')
+
 class StudentSerializer(serializers.Serializer):
     id = serializers.IntegerField()
-    name = serializers.CharField(max_length=100)
+    name = serializers.CharField(max_length=100, validators=[start_with_r])
     city = serializers.CharField(max_length=100)
     roll = serializers.IntegerField()
 
@@ -32,12 +38,12 @@ class StudentSerializer(serializers.Serializer):
     #     return value
 
     # object level Validation
-    def validate(self, data):
-        nm = data.get('name')
-        ct = data.get('city')
-        if nm.lower() == 'rohit' and ct.lower() != 'ranchi':
-            raise serializers.ValidationError('city must be ranchi')
-        return data
+    # def validate(self, data):
+    #     nm = data.get('name')
+    #     ct = data.get('city')
+    #     if nm.lower() == 'rohit' and ct.lower() != 'ranchi':
+    #         raise serializers.ValidationError('city must be ranchi')
+    #     return data
 
 
 

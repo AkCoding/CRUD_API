@@ -21,7 +21,7 @@ def get_data(id = None):
 def post_data():
     data = {
         'id' : 11,
-        'name' : 'RoHit',
+        'name' : 'mohit',
         'roll' : 101,
         'city' : 'indore'
     }
