@@ -20,9 +20,9 @@ def get_data(id = None):
 #Post/create Method Function Here
 def post_data():
     data = {
-        'id' : 1,
-        'name' : 'ravi',
-        'roll' : 201,
+        'id' : 11,
+        'name' : 'RoHit',
+        'roll' : 101,
         'city' : 'indore'
     }
 
