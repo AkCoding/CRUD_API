@@ -22,7 +22,7 @@ def post_data():
     data = {
         'id' : 1,
         'name' : 'ravi',
-        'roll' : 101,
+        'roll' : 201,
         'city' : 'indore'
     }
 
@@ -31,7 +31,7 @@ def post_data():
     data = r.json()
     print(data)
 
-# post_data()
+post_data()
 
 
 
@@ -47,7 +47,7 @@ def update_data():
     data = r.json()
     print(data)
 
-update_data()
+# update_data()
 
 # for Delete Method
 def delete_data():
