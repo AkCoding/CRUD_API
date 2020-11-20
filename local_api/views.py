@@ -3,6 +3,6 @@ from .serializers import StudentSerializer
 from rest_framework import status
 from rest_framework import viewsets
 
-class StudentModelViewset(viewsets.ModelViewSet):
+class StudentReadOnlyModelViewset(viewsets.ReadOnlyModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
