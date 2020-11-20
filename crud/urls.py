@@ -1,9 +1,12 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from local_api import views
+from rest_framework.routers import DefaultRouter
+router = DefaultRouter()
+
+router.register('studentapi', views.StudentModelViewset, basename='student')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('studentapi/', views.StudentListCreate.as_view()),
-    path('studentapi/<int:pk>', views.StudentRetrieveUpdateDestroy.as_view()),
+    path('', include(router.urls)),
 ]
