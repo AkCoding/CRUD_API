@@ -122,7 +122,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES':['rest_framwork.authentication.BasicAuthentication'],
-    'DEFAULT_PERMISSION_CLASSES':['rest_framwork.permissions.BasicAuthentication']
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES':['rest_framwork.authentication.BasicAuthentication'],
+#     'DEFAULT_PERMISSION_CLASSES':['rest_framwork.permissions.BasicAuthentication']
+# }
