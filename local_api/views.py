@@ -19,4 +19,5 @@ class StudentReadOnlyModelViewset2(viewsets.ReadOnlyModelViewSet):
     serializer_class = StudentSerializer
     authentication_classes = [BasicAuthentication]
     # permission_classes = [IsAuthenticated]
-    permission_classes = [AllowAny]
+    # permission_classes = [AllowAny]
+    permission_classes = [IsAdminUser]
